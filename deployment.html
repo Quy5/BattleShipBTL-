@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLEET DEPLOYMENT | BATTLESHIP</title>
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/deployment.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="crt-overlay"></div>
+    
+    <header class="deployment-header">
+        <div class="header-left">
+            <div class="anchor-icon">⚓</div>
+            <div class="title-group">
+                <h1>FLEET <span class="highlight">DEPLOYMENT</span></h1>
+                <p class="phase">PHASE 1: STRATEGIC POSITIONING</p>
+            </div>
+        </div>
+        <button onclick="location.href='index.html'" class="tactical-btn mini">ABORT MISSION</button>
+    </header>
+
+    <main class="deployment-main">
+        <section class="grid-section">
+            <div class="grid-labels-top" id="labels-top"></div>
+            <div class="grid-container">
+                <div class="grid-labels-left" id="labels-left"></div>
+                <div id="deployment-grid" class="battle-grid"></div>
+            </div>
+            
+            <div class="grid-actions">
+                <button id="shuffle-btn" class="tactical-btn mini">
+                    <span class="icon">🔀</span> SHUFFLE
+                </button>
+                <button id="rotate-btn" class="tactical-btn mini">
+                    <span class="icon">🔄</span> ROTATE
+                </button>
+                <button id="clear-btn" class="tactical-btn mini">
+                    <span class="icon">🗑</span> CLEAR
+                </button>
+            </div>
+        </section>
+
+        <aside class="fleet-status">
+            <div class="status-header">
+                <h2>STATE FLEET</h2>
+                <div class="seats-counter"><span id="placed-count">0</span>/5 SEATS</div>
+            </div>
+
+            <div id="ship-list" class="ship-list">
+
+            </div>
+
+            <button id="battle-btn" class="tactical-btn primary large-btn" disabled>
+                BATTLE
+            </button>
+        </aside>
+    </main>
+
+    <div id="orientation-indicator" class="orientation-indicator">
+        ORIENTATION: <span id="orientation-mode">HORIZONTAL</span>
+    </div>
+
+    <script src="scripts/shared.js"></script>
+    <script src="scripts/deployment.js"></script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACTIVE COMBAT | BATTLESHIP</title>
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/combat.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="crt-overlay"></div>
+
+    <div class="hud-bg-effects">
+        <div class="data-stream column-1"></div>
+        <div class="data-stream column-2"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <header class="combat-header">
+        <div class="header-left">
+            <div class="title-group">
+                <h1><span class="combat-icon">❂</span> ACTIVE <span class="highlight">COMBAT</span></h1>
+            </div>
+        </div>
+        <div class="timer-box">
+            <span class="label">CURRENT TIMER</span>
+            <div id="turn-timer">08</div>
+        </div>
+    </header>
+
+    <main class="combat-main">
+
+        <section class="fleet-side player">
+            <div class="panel-corners">
+                <div class="corner tl"></div>
+                <div class="corner tr"></div>
+                <div class="corner bl"></div>
+                <div class="corner br"></div>
+            </div>
+            <div class="side-header">
+                <span class="icon">🛡</span> ALLIED FLEET
+                <div class="integrity-bar">
+                    <span class="label">INTEGRITY: <span id="player-integrity" class="val">65%</span></span>
+                    <div class="bar">
+                        <div id="player-integrity-fill" class="fill" style="width: 65%;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-wrapper">
+                <div class="labels-top" id="p-labels-top"></div>
+                <div class="grid-container">
+                    <div class="labels-left" id="p-labels-left"></div>
+                    <div id="player-grid" class="battle-grid"></div>
+                </div>
+
+                <div class="status-decorators">
+                    <div class="bar yellow"></div>
+                    <div class="bar cyan"></div>
+                    <div class="bar blue"></div>
+                    <div class="bar navy"></div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="tactical-center">
+            <div class="radar-module-box">
+                <div class="radar-module">
+                    <div class="radar-screen">
+                        <div class="radar-sweep"></div>
+                        <div class="radar-rings">
+                            <div class="ring"></div>
+                            <div class="ring"></div>
+                            <div class="ring"></div>
+                        </div>
+                        <div class="radar-crosshair"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fire-control-ring">
+                <button id="fire-btn" class="fire-btn-circle" disabled>
+                    <div class="btn-scanline"></div>
+                    <div class="btn-core">
+                        <span class="icon">❂</span>
+                        <span class="text">FIRE</span>
+                    </div>
+                    <div class="btn-subtext">TARGET LOCKED</div>
+                </button>
+            </div>
+
+            <div class="precision-weapon-box">
+                <div class="precision-stats">
+                    <div class="flex-row">
+                        <span class="label">PRECISION</span>
+                        <span id="acc-value" class="val">42%</span>
+                    </div>
+                    <div class="accuracy-bar">
+                        <div id="acc-fill" class="fill" style="width: 42%;"></div>
+                    </div>
+                </div>
+                <div class="weapon-info">
+                    <span class="label">ACTIVE WEAPON SYSTEM</span>
+                    <div class="weapon-name">
+                        <span class="icon">🚀</span> Tomahawk Missile
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="fleet-side enemy">
+            <div class="panel-corners">
+                <div class="corner tl"></div>
+                <div class="corner tr"></div>
+                <div class="corner bl"></div>
+                <div class="corner br"></div>
+            </div>
+            <div class="side-header">
+                <span class="icon">🎯</span> ENEMY TARGET
+                <div class="threat-level">
+                    THREAT: <span id="threat-label" class="val danger">HIGH</span>
+                </div>
+            </div>
+            <div class="grid-wrapper">
+                <div class="labels-top" id="e-labels-top"></div>
+                <div class="grid-container">
+                    <div class="labels-left" id="e-labels-left"></div>
+                    <div id="enemy-grid" class="battle-grid">
+
+                    </div>
+                </div>
+                <div class="status-decorators enemy">
+                    <div class="bar red"></div>
+                    <div class="bar maroon"></div>
+                    <div class="bar purple"></div>
+                    <div class="bar navy"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="combat-footer">
+        <div class="footer-label">TACTICAL LOG <span class="blink">_</span></div>
+        <div class="tactical-log" id="combat-log">
+
+        </div>
+        <div class="footer-actions">
+            <button id="restart-btn" class="tactical-btn-mini">🔄 RESTART SYSTEM</button>
+        </div>
+    </footer>
+
+    <script src="scripts/shared.js"></script>
+    <script src="scripts/combat.js"></script>
+</body>
+
+</html>

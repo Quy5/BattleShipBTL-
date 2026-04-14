@@ -1,0 +1,151 @@
+:root {
+    --bg-dark: #05080a;
+    --primary-blue: #00d4ff;
+    --primary-blue-glow: rgba(0, 212, 255, 0.4);
+    --accent-orange: #ff9d00;
+    --danger-red: #ff3c3c;
+    --success-green: #00ff88;
+    --text-main: #e0faff;
+    --text-muted: #84a2aa;
+    --glass-bg: rgba(10, 25, 35, 0.7);
+    --glass-border: rgba(0, 212, 255, 0.2);
+    --font-tactical: 'Orbitron', sans-serif;
+    --font-data: 'Share Tech Mono', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    background-image: 
+        linear-gradient(rgba(0, 212, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 212, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    color: var(--text-main);
+    font-family: var(--font-data);
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    cursor: default;
+}
+
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(18, 16, 16, 0) 50%,
+        rgba(0, 0, 0, 0.25) 50%
+    );
+    background-size: 100% 4px;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+
+@keyframes flicker {
+    0% { opacity: 0.97; }
+    5% { opacity: 0.95; }
+    10% { opacity: 0.9; }
+    15% { opacity: 0.95; }
+    25% { opacity: 0.98; }
+    30% { opacity: 0.94; }
+    50% { opacity: 0.98; }
+    100% { opacity: 1; }
+}
+
+.crt-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 20, 30, 0.4) 100%);
+    pointer-events: none;
+    z-index: 9998;
+    animation: flicker 0.15s infinite;
+}
+
+
+.tactical-btn {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--text-main);
+    padding: 12px 24px;
+    font-family: var(--font-tactical);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    backdrop-filter: blur(10px);
+}
+
+.tactical-btn:hover {
+    background: rgba(0, 212, 255, 0.1);
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 20px var(--primary-blue-glow);
+    transform: translateY(-2px);
+    color: var(--primary-blue);
+}
+
+.tactical-btn:active {
+    transform: translateY(0);
+}
+
+.tactical-btn.primary {
+    border-color: var(--primary-blue);
+    background: rgba(0, 212, 255, 0.05);
+}
+
+.tactical-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.tactical-btn:hover::before {
+    left: 100%;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-tactical);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+.glitch {
+    position: relative;
+    text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+                 0.025em 0.04em 0 #fffc00;
+}
+
+
+.back-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}

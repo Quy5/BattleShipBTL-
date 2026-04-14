@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MISSION ACCOMPLISHED | BATTLESHIP</title>
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/victory.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="crt-overlay"></div>
+    
+    <main class="victory-container">
+        <header class="victory-header">
+            <p class="status-subtitle">MISSION ACCOMPLISHED</p>
+            <h1 id="victory-title">VICTORY</h1>
+        </header>
+
+        <section class="rank-promotion">
+            <div class="rank-badge">
+                <div class="badge-icon">🏅</div>
+                <div class="rank-info">
+                    <span class="label">RANK PROMOTED</span>
+                    <h2 id="rank-name">FLEET ADMIRAL</h2>
+                </div>
+            </div>
+        </section>
+
+        <section class="final-stats">
+            <div class="stat-card">
+                <div class="icon">❂</div>
+                <div class="value" id="stat-shots">0</div>
+                <div class="label">SHOTS FIRED</div>
+            </div>
+            <div class="stat-card">
+                <div class="icon">🎯</div>
+                <div class="value" id="stat-accuracy">0%</div>
+                <div class="label">ACCURACY</div>
+            </div>
+            <div class="stat-card">
+                <div class="icon">⚓</div>
+                <div class="value" id="stat-sunk">5/5</div>
+                <div class="label">SHIPS SUNK</div>
+            </div>
+            <div class="stat-card">
+                <div class="icon">⏱</div>
+                <div class="value" id="stat-duration">00:00</div>
+                <div class="label">DURATION</div>
+            </div>
+        </section>
+
+        <nav class="victory-nav">
+            <button onclick="location.href='deployment.html'" class="tactical-btn primary">
+                <span class="icon">🔄</span> PLAY AGAIN
+            </button>
+            <button onclick="location.href='index.html'" class="tactical-btn">
+                <span class="icon">☰</span> RETURN TO MENU
+            </button>
+        </nav>
+    </main>
+
+    <div class="corner-accents">
+        <div class="top-left"></div>
+        <div class="top-right"></div>
+        <div class="bottom-left"></div>
+        <div class="bottom-right"></div>
+    </div>
+
+    <script>
+        window.onload = () => {
+            const stats = JSON.parse(localStorage.getItem('btl_final_stats'));
+            if (stats) {
+                const title = document.getElementById('victory-title');
+                title.innerText = stats.win ? 'VICTORY' : 'DEFEAT';
+                title.style.color = stats.win ? 'var(--success-green)' : 'var(--danger-red)';
+                document.getElementById('stat-shots').innerText = stats.shots;
+                document.getElementById('stat-accuracy').innerText = stats.accuracy + '%';
+                document.getElementById('stat-duration').innerText = formatTime(stats.duration);
+                document.getElementById('rank-name').innerText = stats.win ? 'FLEET ADMIRAL' : 'RESERVIST';
+                if (!stats.win) document.querySelector('.rank-badge').classList.add('defeat');
+            }
+        };
+
+        function formatTime(seconds) {
+            const m = Math.floor(seconds / 60);
+            const s = seconds % 60;
+            return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+        }
+    </script>
+</body>
+</html>
