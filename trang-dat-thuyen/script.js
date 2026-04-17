@@ -10,6 +10,7 @@ window.onload = () => {
     veBanCo();
     dangKySuKien();
     capNhatGiaoDien();
+    AudioSys.startBGM();
 };
 
 // Hien thi toa do A-J va 1-10
@@ -50,6 +51,16 @@ function veBanCo() {
     }
 }
 
+// Tim thuyen tiep theo chua duoc dat
+function timThuyenTiepTheo() {
+    for (let i = 0; i < CAU_HINH_THUYEN.length; i++) {
+        if (!danhSachThuyenDaDat.some(s => s.ten === CAU_HINH_THUYEN[i].ten)) {
+            return i;
+        }
+    }
+    return CAU_HINH_THUYEN.length; // Da dat het
+}
+
 // Xu ly khi nguoi dung bam vao mot o de dat thuyen
 function xuLyClickO(r, c) {
     if (thuyenHienTaiIdx >= CAU_HINH_THUYEN.length) return;
@@ -59,7 +70,7 @@ function xuLyClickO(r, c) {
 
     if (banCo.datThuyen(thuyenMoi, r, c, dangChieuDoc)) {
         danhSachThuyenDaDat.push({ ten: cauHinh.ten, r, c, v: dangChieuDoc });
-        thuyenHienTaiIdx++;
+        thuyenHienTaiIdx = timThuyenTiepTheo();
         capNhatGiaoDien();
     }
 }
@@ -172,7 +183,7 @@ function dangKySuKien() {
     const nutChienDau = document.getElementById('battle-btn');
     if (nutChienDau) nutChienDau.onclick = () => {
         LuuTru.luuBanCoNguoiChoi(banCo);
-        location.href = 'combat.html';
+        location.href = '../trang-combat/index.html';
     };
 }
 

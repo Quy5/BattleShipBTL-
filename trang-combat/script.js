@@ -12,7 +12,7 @@ let troChoiKetThuc = false;
 window.onload = () => {
     const duLieuSaved = LuuTru.layBanCoNguoiChoi();
     if (!duLieuSaved) {
-        location.href = 'deployment.html';
+        location.href = '../trang-dat-thuyen/index.html';
         return;
     }
 
@@ -37,21 +37,10 @@ window.onload = () => {
         const timerEl = document.getElementById('turn-timer');
         if (timerEl) timerEl.innerText = (thoiGianTroiQua % 60).toString().padStart(2, '0');
     }, 1000);
-};
 
-// Tu dong tao ban co cua may (ke dich)
-function taoBanCoKeDich() {
-    CAU_HINH_THUYEN.forEach(cfg => {
-        let daDat = false;
-        while (!daDat) {
-            const r = Math.floor(Math.random() * 10);
-            const c = Math.floor(Math.random() * 10);
-            const v = Math.random() > 0.5;
-            const thuyenMoi = new Thuyen(cfg.ten, cfg.doDai);
-            if (banCoKeDich.datThuyen(thuyenMoi, r, c, v)) daDat = true;
-        }
-    });
-}
+    // Thu bat dau BGM
+    AudioSys.startBGM();
+};
 
 // Ve luoi ban co cho ca nguoi choi va ke dich
 function veBanCo() {
@@ -79,104 +68,6 @@ function veBanCo() {
             eCell.onclick = () => xuLyChonMucTieu(r, c);
             eGrid.appendChild(eCell);
         }
-    }
-}
-
-// Khi nguoi choi chon mot o de ban tren ban co dich
-function xuLyChonMucTieu(r, c) {
-    if (!luotNguoiChoi || troChoiKetThuc) return;
-    if (banCoKeDich.mangLuoi[r][c] === 'trung' || banCoKeDich.mangLuoi[r][c] === 'truot') return;
-
-    // Xoa muc tieu cu da chon
-    document.querySelectorAll('.cell.targeted').forEach(cell => cell.classList.remove('targeted'));
-    
-    mucTieuDaChon = { r, c };
-    const cell = document.getElementById(`e-cell-${r}-${c}`);
-    cell.classList.add('targeted');
-
-    const nutKhaiHoa = document.getElementById('fire-btn');
-    if (nutKhaiHoa) nutKhaiHoa.disabled = false;
-    
-    capNhatNhatKyHienTai(`DANG KHOA MUC TIEU...`);
-}
-
-// Thuc hien lenh ban
-function khaiHoa() {
-    if (!mucTieuDaChon || !luotNguoiChoi || troChoiKetThuc) return;
-
-    const { r, c } = mucTieuDaChon;
-    mucTieuDaChon = null;
-    soLuotBan++;
-    
-    const cell = document.getElementById(`e-cell-${r}-${c}`);
-    cell.classList.remove('targeted');
-    
-    const nutKhaiHoa = document.getElementById('fire-btn');
-    if (nutKhaiHoa) nutKhaiHoa.disabled = true;
-
-    const ketQua = banCoKeDich.nhanTanCong(r, c);
-    const toaDoVanBan = `${String.fromCharCode(65 + r)}-${c + 1}`;
-
-    if (ketQua.kieu === 'trung') {
-        const cfg = CAU_HINH_THUYEN.find(s => s.ten === ketQua.tenThuyen);
-        cell.classList.add('hit', 'ship', cfg ? cfg.color : 'blue');
-        rungManHinh('light');
-        soLanTrung++;
-        ghiNhatKy(toaDoVanBan, 'TRUNG MUC TIEU', 'hit');
-        
-        if (ketQua.daChim) {
-            ghiNhatKy('SYSTEM', `THUYEN DICH ${ketQua.tenThuyen} DA CHIM`, 'sunk');
-            const lopChieu = ketQua.laChieuDoc ? 'sunk-v' : 'sunk-h';
-            ketQua.toaDo.forEach(pos => {
-                const cellChim = document.getElementById(`e-cell-${pos.r}-${pos.c}`);
-                if (cellChim) cellChim.classList.add('sunk-mark', lopChieu);
-            });
-        }
-        kiemTraKetThuc();
-    } else if (ketQua.kieu === 'truot') {
-        cell.classList.add('miss');
-        soLanTruot++;
-        ghiNhatKy(toaDoVanBan, 'BAN TRUOT', 'miss');
-        luotNguoiChoi = false;
-        setTimeout(luotKeDich, 800);
-    }
-    
-    capNhatThongKe();
-}
-
-// Luot may ban (Ke dich)
-function luotKeDich() {
-    if (troChoiKetThuc) return;
-    
-    let r, c;
-    do {
-        r = Math.floor(Math.random() * 10);
-        c = Math.floor(Math.random() * 10);
-    } while (banCoNguoiChoi.mangLuoi[r][c] === 'trung' || banCoNguoiChoi.mangLuoi[r][c] === 'truot');
-
-    const ketQua = banCoNguoiChoi.nhanTanCong(r, c);
-    const idO = r * 10 + c;
-    const cell = document.getElementById('player-grid').children[idO];
-    const toaDoVanBan = `${String.fromCharCode(65 + r)}-${c + 1}`;
-
-    if (ketQua.kieu === 'trung') {
-        cell.classList.add('hit');
-        rungManHinh('heavy');
-        ghiNhatKy('DICH BAN', `TRUNG TAI ${toaDoVanBan}`, 'hit');
-        capNhatSucManh();
-        
-        if (ketQua.daChim) {
-            const lopChieu = ketQua.laChieuDoc ? 'sunk-v' : 'sunk-h';
-            ketQua.toaDo.forEach(pos => {
-                const cellChim = document.getElementById('player-grid').children[pos.r * 10 + pos.c];
-                if (cellChim) cellChim.classList.add('sunk-mark', lopChieu);
-            });
-        }
-        if (!kiemTraKetThuc()) setTimeout(luotKeDich, 800);
-    } else {
-        cell.classList.add('miss');
-        ghiNhatKy('DICH BAN', `BAN TRUOT TAI ${toaDoVanBan}`, 'miss');
-        luotNguoiChoi = true;
     }
 }
 
@@ -242,20 +133,24 @@ function kiemTraKetThuc() {
 // Xu ly khi game ket thuc (thang hoac thua)
 function ketThucGame(thang) {
     troChoiKetThuc = true;
+    
+    const soThuyenDichChim = banCoKeDich.danhSachThuyen.filter(s => (s.soLanTrung || 0) >= s.doDai).length;
+    
     localStorage.setItem('btl_final_stats_vn', JSON.stringify({
         win: thang, 
         shots: soLuotBan,
-        accuracy: Math.round((soLanTrung / soLuotBan) * 100),
+        accuracy: Math.round((soLanTrung / soLuotBan) * 100) || 0,
+        sunk: soThuyenDichChim,
         duration: Math.round((Date.now() - thoiGianBatDau) / 1000)
     }));
-    setTimeout(() => location.href = 'victory.html', 1500);
+    setTimeout(() => location.href = '../trang-chien-thang/index.html', 1500);
 }
 
 // Dang ky cac su kien nut bam trong tran dau
 function dangKySuKien() {
     document.getElementById('fire-btn').onclick = khaiHoa;
     document.getElementById('restart-btn').onclick = () => {
-        if (confirm("HUY BO NHIEM VU?")) location.href = 'index.html';
+        if (confirm("HUY BO NHIEM VU?")) location.href = '../trang-chu/index.html';
     };
 }
 

@@ -143,30 +143,6 @@
     backdrop-filter: blur(10px);
 }
 
-.status-items {
-    display: flex;
-    gap: 40px;
-}
-
-.status-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-    opacity: 0.6;
-    transition: opacity 0.3s;
-    cursor: pointer;
-}
-
-.status-item:hover {
-    opacity: 1;
-    color: var(--primary-blue);
-}
-
-.status-item .icon {
-    font-size: 1.2rem;
-}
-
 .status-item .label {
     font-size: 0.6rem;
     letter-spacing: 2px;

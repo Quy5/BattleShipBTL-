@@ -1,5 +1,5 @@
 :root {
-
+    /* Sophisticated Tactical Palette */
     --base-deep: #02060d;
     --navy-glaze: rgba(10, 20, 45, 0.4);
     --cyan-neon: #00f2ff;
@@ -13,17 +13,17 @@
     --text-muted: #6b8296;
     --glass-border: rgba(0, 242, 255, 0.2);
 
-
+    /* Tactical Radar Green */
     --radar-green: #3cff00;
     --radar-glow: rgba(60, 255, 0, 0.4);
     --radar-grid: rgba(60, 255, 0, 0.1);
     --radar-dim: rgba(60, 255, 0, 0.05);
 
-
+    /* Fonts */
     --font-tactical: 'Orbitron', sans-serif;
     --font-data: 'Share Tech Mono', monospace;
 
-
+    /* Transitions */
     --trans-smooth: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
@@ -35,7 +35,7 @@ body {
     perspective: 1000px;
 }
 
-
+/* Background Effects */
 .hud-bg-effects {
     position: fixed;
     inset: 0;
@@ -73,8 +73,6 @@ body {
     }
 }
 
-
-/* Header Enhancement */
 .combat-header {
     height: 80px;
     padding: 0 60px;
@@ -144,7 +142,6 @@ body {
     text-shadow: 0 0 10px var(--gold-glow);
 }
 
-/* Main Layout */
 .combat-main {
     height: calc(100vh - 170px);
     display: grid;
@@ -154,7 +151,6 @@ body {
     gap: 30px;
 }
 
-/* Panels & Glassmorphism */
 .fleet-side {
     position: relative;
     width: 500px;
@@ -272,7 +268,6 @@ body {
     align-items: flex-start;
 }
 
-/* Grids Enhancement */
 .battle-grid {
     display: grid;
     grid-template-columns: repeat(10, 36px);
@@ -300,13 +295,36 @@ body {
     z-index: 5;
 }
 
-.cell.ship.blue { background: rgba(0, 128, 255, 0.4); border-color: #0080ff; box-shadow: 0 0 10px rgba(0, 128, 255, 0.2); }
-.cell.ship.orange { background: rgba(255, 157, 0, 0.4); border-color: #ff9d00; box-shadow: 0 0 10px rgba(255, 157, 0, 0.2); }
-.cell.ship.red { background: rgba(255, 60, 60, 0.4); border-color: #ff3c3c; box-shadow: 0 0 10px rgba(255, 60, 60, 0.2); }
-.cell.ship.green { background: rgba(0, 255, 136, 0.4); border-color: #00ff88; box-shadow: 0 0 10px rgba(0, 255, 136, 0.2); }
-.cell.ship.purple { background: rgba(191, 0, 255, 0.4); border-color: #bf00ff; box-shadow: 0 0 10px rgba(191, 0, 255, 0.2); }
+.cell.ship.blue {
+    background: rgba(0, 128, 255, 0.4);
+    border-color: #0080ff;
+    box-shadow: 0 0 10px rgba(0, 128, 255, 0.2);
+}
 
-/* Marks Visuals */
+.cell.ship.orange {
+    background: rgba(255, 157, 0, 0.4);
+    border-color: #ff9d00;
+    box-shadow: 0 0 10px rgba(255, 157, 0, 0.2);
+}
+
+.cell.ship.red {
+    background: rgba(255, 60, 60, 0.4);
+    border-color: #ff3c3c;
+    box-shadow: 0 0 10px rgba(255, 60, 60, 0.2);
+}
+
+.cell.ship.green {
+    background: rgba(0, 255, 136, 0.4);
+    border-color: #00ff88;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+}
+
+.cell.ship.purple {
+    background: rgba(191, 0, 255, 0.4);
+    border-color: #bf00ff;
+    box-shadow: 0 0 10px rgba(191, 0, 255, 0.2);
+}
+
 .cell.hit::before {
     content: '';
     position: absolute;
@@ -337,7 +355,6 @@ body {
     opacity: 0.5;
 }
 
-/* Sunk Ship Mark - Red Strike (Continuous Line) */
 .cell.sunk-mark::after {
     content: '';
     position: absolute;
@@ -405,7 +422,6 @@ body {
     pointer-events: none;
 }
 
-/* Tactical Center */
 .tactical-center {
     display: flex;
     flex-direction: column;
@@ -437,20 +453,19 @@ body {
     border-radius: 50%;
     position: relative;
     overflow: hidden;
-    background: 
+    background:
         repeating-linear-gradient(0deg, rgba(60, 255, 0, 0.03) 0px, transparent 1px, transparent 2px),
         linear-gradient(var(--radar-grid) 1px, transparent 1px),
         linear-gradient(90deg, var(--radar-grid) 1px, transparent 1px),
         radial-gradient(circle at center, #002200 0%, #000 100%);
     background-size: 100% 3px, 15px 15px, 15px 15px, 100% 100%;
     background-position: center;
-    box-shadow: 
+    box-shadow:
         inset 0 0 40px rgba(60, 255, 0, 0.1),
         0 0 20px rgba(0, 0, 0, 0.5),
         0 0 10px var(--radar-dim);
 }
 
-/* Glass Shine Overlay */
 .radar-module::before {
     content: '';
     position: absolute;
@@ -458,12 +473,10 @@ body {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.05) 50%,
-        rgba(255, 255, 255, 0) 55%
-    );
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.05) 50%,
+            rgba(255, 255, 255, 0) 55%);
     transform: rotate(-25deg);
     pointer-events: none;
     z-index: 10;
@@ -472,13 +485,11 @@ body {
 .radar-sweep {
     position: absolute;
     inset: 0;
-    background: conic-gradient(
-        from 0deg,
-        var(--radar-green) 0deg,
-        rgba(60, 255, 0, 0.4) 10deg,
-        rgba(60, 255, 0, 0.1) 45deg,
-        transparent 90deg
-    );
+    background: conic-gradient(from 0deg,
+            var(--radar-green) 0deg,
+            rgba(60, 255, 0, 0.4) 10deg,
+            rgba(60, 255, 0, 0.1) 45deg,
+            transparent 90deg);
     filter: blur(0.5px);
     animation: sweep 4s linear infinite;
     transform-origin: center;
@@ -501,7 +512,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border: 0.5px solid rgba(60, 255, 0, 0.08); /* Precision lines */
+    border: 0.5px solid rgba(60, 255, 0, 0.08);
     border-radius: 50%;
     pointer-events: none;
     z-index: 1;
@@ -525,7 +536,7 @@ body {
 .radar-crosshair {
     position: absolute;
     inset: 0;
-    background: 
+    background:
         linear-gradient(90deg, transparent 49.8%, rgba(60, 255, 0, 0.15) 50%, transparent 50.2%),
         linear-gradient(0deg, transparent 49.8%, rgba(60, 255, 0, 0.15) 50%, transparent 50.2%);
     pointer-events: none;
@@ -539,7 +550,7 @@ body {
     height: 6px;
     background: var(--radar-green);
     border-radius: 50%;
-    box-shadow: 
+    box-shadow:
         0 0 10px var(--radar-green),
         35px -40px 0 var(--radar-green),
         -45px 25px 0 var(--radar-green);
@@ -553,12 +564,27 @@ body {
 }
 
 @keyframes blipFade {
-    0%, 100% { opacity: 0.1; filter: blur(2px); transform: scale(0.8); }
-    15% { opacity: 0.8; filter: blur(0px); transform: scale(1.1); }
-    30% { opacity: 0.4; filter: blur(1px); transform: scale(1); }
+
+    0%,
+    100% {
+        opacity: 0.1;
+        filter: blur(2px);
+        transform: scale(0.8);
+    }
+
+    15% {
+        opacity: 0.8;
+        filter: blur(0px);
+        transform: scale(1.1);
+    }
+
+    30% {
+        opacity: 0.4;
+        filter: blur(1px);
+        transform: scale(1);
+    }
 }
 
-/* Fire Button - Kinetic Trigger */
 .fire-control-ring {
     width: 160px;
     height: 160px;
@@ -667,7 +693,6 @@ body {
     letter-spacing: 1px;
 }
 
-/* Precision/Weapon Box */
 .precision-weapon-box {
     background: rgba(0, 20, 40, 0.4);
     backdrop-filter: blur(10px);
@@ -717,7 +742,6 @@ body {
     color: var(--text-primary);
 }
 
-/* Labels Enhancement */
 .labels-top {
     display: none;
 }
@@ -746,7 +770,6 @@ body {
     display: none;
 }
 
-/* Footer & Logging */
 .combat-footer {
     height: 90px;
     background: rgba(0, 0, 0, 0.8);
@@ -847,7 +870,6 @@ body {
         opacity: 0;
     }
 }
-
 
 .target-popup {
     background: var(--red-alert);

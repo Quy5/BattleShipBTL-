@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FLEET DEPLOYMENT | BATTLESHIP</title>
-    <link rel="stylesheet" href="styles/base.css">
-    <link rel="stylesheet" href="styles/deployment.css">
+    <link rel="stylesheet" href="../styles/base.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <div class="crt-overlay"></div>
-    
+
     <header class="deployment-header">
         <div class="header-left">
             <div class="anchor-icon">⚓</div>
@@ -21,7 +24,7 @@
                 <p class="phase">PHASE 1: STRATEGIC POSITIONING</p>
             </div>
         </div>
-        <button onclick="location.href='index.html'" class="tactical-btn mini">ABORT MISSION</button>
+        <button onclick="location.href='../trang-chu/index.html'" class="tactical-btn mini">ABORT MISSION</button>
     </header>
 
     <main class="deployment-main">
@@ -31,7 +34,7 @@
                 <div class="grid-labels-left" id="labels-left"></div>
                 <div id="deployment-grid" class="battle-grid"></div>
             </div>
-            
+
             <div class="grid-actions">
                 <button id="shuffle-btn" class="tactical-btn mini">
                     <span class="icon">🔀</span> SHUFFLE
@@ -65,7 +68,8 @@
         ORIENTATION: <span id="orientation-mode">HORIZONTAL</span>
     </div>
 
-    <script src="scripts/shared.js"></script>
-    <script src="scripts/deployment.js"></script>
+    <script src="../logic/shared.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>

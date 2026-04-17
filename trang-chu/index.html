@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BATTLESHIP | TACTICAL NAVAL WARFARE</title>
-    <link rel="stylesheet" href="styles/base.css">
-    <link rel="stylesheet" href="styles/menu.css">
+    <link rel="stylesheet" href="../styles/base.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap"
@@ -18,12 +18,12 @@
 
     <main class="menu-container">
         <div class="background-wrapper">
-            <img src="assets/menu_bg.png" alt="Naval Hintergrund" class="bg-image">
+            <img src="../assets/menu_bg.png" alt="Naval Hintergrund" class="bg-image">
             <div class="bg-overlay"></div>
         </div>
 
         <section class="content">
-            <header class="title-section">5
+            <header class="title-section">
                 <h1 class="glitch" data-text="BATTLESHIP">BATTLESHIP</h1>
                 <p class="subtitle">TACTICAL NAVAL WARFARE</p>
                 <div class="target-rings">
@@ -34,7 +34,7 @@
             </header>
 
             <nav class="menu-nav">
-                <button onclick="location.href='deployment.html'" class="tactical-btn primary">
+                <button onclick="location.href='../trang-dat-thuyen/index.html'" class="tactical-btn primary">
                     <span class="btn-text">PLAY GAME</span>
                     <span class="btn-icon">▶</span>
                 </button>
@@ -53,18 +53,15 @@
             <div class="status-items">
                 <div class="status-item"><span class="icon">♞</span><span class="label">TACTICAL</span></div>
                 <div class="status-item"><span class="icon">🏅</span><span class="label">RANK</span></div>
-                <div class="status-item"><span class="icon">🔊</span><span class="label">SOUND</span></div>
+                <div class="status-item" id="sound-toggle" style="cursor: pointer;"><span class="icon"
+                        id="sound-icon">🔊</span><span class="label" id="sound-label">SOUND ON</span></div>
             </div>
             <div class="settings"><button class="settings-btn">⚙ SETTINGS</button></div>
         </footer>
     </main>
 
-    <script src="scripts/shared.js"></script>
-    <script>
-        window.onload = () => {
-
-        };
-    </script>
+    <script src="../logic/shared.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

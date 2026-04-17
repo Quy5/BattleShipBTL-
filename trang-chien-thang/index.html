@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MISSION ACCOMPLISHED | BATTLESHIP</title>
-    <link rel="stylesheet" href="styles/base.css">
-    <link rel="stylesheet" href="styles/victory.css">
+    <link rel="stylesheet" href="../styles/base.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -53,10 +53,10 @@
         </section>
 
         <nav class="victory-nav">
-            <button onclick="location.href='deployment.html'" class="tactical-btn primary">
+            <button onclick="location.href='../trang-dat-thuyen/index.html'" class="tactical-btn primary">
                 <span class="icon">🔄</span> PLAY AGAIN
             </button>
-            <button onclick="location.href='index.html'" class="tactical-btn">
+            <button onclick="location.href='../trang-chu/index.html'" class="tactical-btn">
                 <span class="icon">☰</span> RETURN TO MENU
             </button>
         </nav>
@@ -69,26 +69,7 @@
         <div class="bottom-right"></div>
     </div>
 
-    <script>
-        window.onload = () => {
-            const stats = JSON.parse(localStorage.getItem('btl_final_stats'));
-            if (stats) {
-                const title = document.getElementById('victory-title');
-                title.innerText = stats.win ? 'VICTORY' : 'DEFEAT';
-                title.style.color = stats.win ? 'var(--success-green)' : 'var(--danger-red)';
-                document.getElementById('stat-shots').innerText = stats.shots;
-                document.getElementById('stat-accuracy').innerText = stats.accuracy + '%';
-                document.getElementById('stat-duration').innerText = formatTime(stats.duration);
-                document.getElementById('rank-name').innerText = stats.win ? 'FLEET ADMIRAL' : 'RESERVIST';
-                if (!stats.win) document.querySelector('.rank-badge').classList.add('defeat');
-            }
-        };
-
-        function formatTime(seconds) {
-            const m = Math.floor(seconds / 60);
-            const s = seconds % 60;
-            return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-        }
-    </script>
+    <script src="../logic/shared.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
