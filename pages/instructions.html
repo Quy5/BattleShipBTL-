@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INSTRUCTION MANUAL | BATTLESHIP</title>
-    <link rel="stylesheet" href="../styles/base.css">
-    <link rel="stylesheet" href="instructions.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/instructions.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <div class="crt-overlay"></div>
-    
-    <button onclick="location.href='index.html'" class="tactical-btn back-btn">← BACK TO MENU</button>
+
+    <button onclick="location.href='home.html'" class="tactical-btn back-btn">← BACK TO MENU</button>
 
     <main class="manual-container">
         <header class="manual-header">
@@ -28,7 +31,8 @@
                 <div class="card-content">
                     <div class="step-num">01</div>
                     <h2>MAIN OBJECTIVE</h2>
-                    <p>Your mission is to locate and sink the entire enemy fleet before they destroy yours. The first admiral to eliminate the 5 enemy ships wins immediately.</p>
+                    <p>Your mission is to locate and sink the entire enemy fleet before they destroy yours. The first
+                        admiral to eliminate the 5 enemy ships wins immediately.</p>
                 </div>
             </div>
 
@@ -38,7 +42,8 @@
                 <div class="card-content">
                     <div class="step-num">02</div>
                     <h2>DEPLOYMENT</h2>
-                    <p>Position your 5 ships on the 10×10 tactical grid. Ships can be placed horizontally or vertically.</p>
+                    <p>Position your 5 ships on the 10×10 tactical grid. Ships can be placed horizontally or vertically.
+                    </p>
                 </div>
             </div>
 
@@ -48,7 +53,8 @@
                 <div class="card-content">
                     <div class="step-num">03</div>
                     <h2>ENGAGEMENT</h2>
-                    <p>Combat takes place turn by turn. Select a coordinate (ex: D-5) to fire. The system will confirm the impact.</p>
+                    <p>Combat takes place turn by turn. Select a coordinate (ex: D-5) to fire. The system will confirm
+                        the impact.</p>
                 </div>
             </div>
 
@@ -61,19 +67,31 @@
                     <div class="legend-grid">
                         <div class="legend-item hit">
                             <div class="symbol"></div>
-                            <div class="text"><h3>HIT</h3><p>Hit confirmed</p></div>
+                            <div class="text">
+                                <h3>HIT</h3>
+                                <p>Hit confirmed</p>
+                            </div>
                         </div>
                         <div class="legend-item miss">
                             <div class="symbol"></div>
-                            <div class="text"><h3>MISS</h3><p>No contact</p></div>
+                            <div class="text">
+                                <h3>MISS</h3>
+                                <p>No contact</p>
+                            </div>
                         </div>
                         <div class="legend-item ship">
                             <div class="symbol"></div>
-                            <div class="text"><h3>SHIP PLACED</h3><p>Active unit</p></div>
+                            <div class="text">
+                                <h3>SHIP PLACED</h3>
+                                <p>Active unit</p>
+                            </div>
                         </div>
                         <div class="legend-item sunk">
                             <div class="symbol"></div>
-                            <div class="text"><h3>SUNK</h3><p>Destroyed</p></div>
+                            <div class="text">
+                                <h3>SUNK</h3>
+                                <p>Destroyed</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -81,6 +99,9 @@
         </section>
     </main>
 
-    <script src="../logic/shared.js"></script>
+    <script src="../js/core/Storage.js"></script>
+    <script src="../js/core/GameModels.js"></script>
+    <script src="../js/core/AudioManager.js"></script>
 </body>
+
 </html>

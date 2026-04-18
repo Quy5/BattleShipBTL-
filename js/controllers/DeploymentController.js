@@ -183,7 +183,7 @@ function dangKySuKien() {
     const nutChienDau = document.getElementById('battle-btn');
     if (nutChienDau) nutChienDau.onclick = () => {
         LuuTru.luuBanCoNguoiChoi(banCo);
-        location.href = '../trang-combat/index.html';
+        location.href = 'combat.html';
     };
 }
 

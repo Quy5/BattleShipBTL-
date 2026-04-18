@@ -28,51 +28,51 @@ function taoBanCoKeDich() {
     });
 }
 
+function isValidTarget(r, c) {
+    if (r < 0 || r >= 10 || c < 0 || c >= 10) return false;
+    let state = banCoNguoiChoi.mangLuoi[r][c];
+    return state !== 'trung' && state !== 'truot';
+}
+
 /**
  * Hàm này xử lý hành động bắn của máy (kẻ địch).
  */
 function luotKeDich() {
-    // Nếu trò chơi đã kết thúc thì dừng hoạt động
     if (troChoiKetThuc) return;
 
-    let hangMayBan, cotMayBan;
+    const doKho = LuuTru.layDoKho() || 'de';
+    let toaDoMayBan;
 
-    // 1. CHỌN MỤC TIÊU: Máy sẽ tìm một ô ngẫu nhiên MÀ CHƯA TỪNG BẮN VÀO TRƯỚC ĐÓ.
-    let oDaBanRoi = true;
-    while (oDaBanRoi) {
-        hangMayBan = Math.floor(Math.random() * 10);
-        cotMayBan = Math.floor(Math.random() * 10);
+    if (doKho === 'de') toaDoMayBan = getEasyMove();
+    else if (doKho === 'trungBinh') toaDoMayBan = getMediumMove();
+    else toaDoMayBan = getHardMove();
 
-        const trangThaiO = banCoNguoiChoi.mangLuoi[hangMayBan][cotMayBan];
-        // Nếu ô đó là 'trung' hoặc 'truot', nghĩa là máy đã đổi tọa độ này rồi, phải tìm ô khác
-        oDaBanRoi = (trangThaiO === 'trung' || trangThaiO === 'truot');
+    if (!toaDoMayBan || !isValidTarget(toaDoMayBan.r, toaDoMayBan.c)) {
+        toaDoMayBan = getEasyMove();
     }
 
-    // 2. TẤN CÔNG: Ghi nhận đòn tấn công vào hệ thống dữ liệu bàn cờ
+    let hangMayBan = toaDoMayBan.r;
+    let cotMayBan = toaDoMayBan.c;
+
     const ketQuaBan = banCoNguoiChoi.nhanTanCong(hangMayBan, cotMayBan);
 
-    // 3. XỬ LÝ GIAO DIỆN
-    // Xác định thẻ div trên màn hình tương ứng với tọa độ vừa bắn
+    // Always call updateMediumState when playing against medium since state tracks targets
+    if (doKho === 'trungBinh') {
+        updateMediumState(hangMayBan, cotMayBan, ketQuaBan);
+    }
+
     const thuTuO_TrenManHinh = hangMayBan * 10 + cotMayBan;
     const oGiaoDien = document.getElementById('player-grid').children[thuTuO_TrenManHinh];
-
-    // Đổi tọa độ số (VD: 0, 4) thành tọa độ quân sự dễ đọc (VD: A-5) (65 là mã chữ cái 'A')
     const toaDoDocDuoc = `${String.fromCharCode(65 + hangMayBan)}-${cotMayBan + 1}`;
 
-    // 4. KIỂM TRA KẾT QUẢ BẮN
     if (ketQuaBan.kieu === 'trung') {
-        // ---------- NẾU MÁY BẮN TRÚNG ---------- //
-
-        oGiaoDien.classList.add('hit'); // Đổi màu ô trên màn hình
-        rungManHinh('heavy'); // Hiệu ứng rung khung hình
+        oGiaoDien.classList.add('hit');
+        rungManHinh('heavy');
         ghiNhatKy('ĐỊCH BẮN', `TRÚNG TẠI ${toaDoDocDuoc}`, 'hit');
-        capNhatSucManh(); // Giảm thanh máu của người chơi
+        capNhatSucManh();
 
-        // Kiểm tra xem viên đạn có làm chìm thuyền không
         if (ketQuaBan.daChim) {
-            AudioSys.playSunk(); // Âm thanh thuyền chìm
-
-            // Vẽ đường gạch ngang/dọc qua con thuyền đã chìm
+            AudioSys.playSunk();
             const huongVachKe = ketQuaBan.laChieuDoc ? 'sunk-v' : 'sunk-h';
             ketQuaBan.toaDo.forEach(viTri => {
                 const viTriManHinh = viTri.r * 10 + viTri.c;
@@ -80,22 +80,14 @@ function luotKeDich() {
                 if (oChim) oChim.classList.add('sunk-mark', huongVachKe);
             });
         } else {
-            AudioSys.playHit(); // Âm thanh nổ bình thường
+            AudioSys.playHit();
         }
 
-        // Luật trò chơi: Bắn trúng thì máy được bắn tiếp phát nữa
-        if (!kiemTraKetThuc()) {
-            setTimeout(luotKeDich, 800); // Dừng 0.8 giây rồi gọi lại hàm này
-        }
-
+        if (!kiemTraKetThuc()) setTimeout(luotKeDich, 800);
     } else {
-        // ---------- NẾU MÁY BẮN TRƯỢT ---------- //
-
-        AudioSys.playMiss(); // Âm thanh rớt xuống nước
+        AudioSys.playMiss();
         oGiaoDien.classList.add('miss');
         ghiNhatKy('ĐỊCH BẮN', `BẮN TRƯỢT TẠI ${toaDoDocDuoc}`, 'miss');
-
-        // Hết lượt, báo hiệu để người chơi tiếp tục
         luotNguoiChoi = true;
     }
 }

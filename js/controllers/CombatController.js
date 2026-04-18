@@ -12,7 +12,7 @@ let troChoiKetThuc = false;
 window.onload = () => {
     const duLieuSaved = LuuTru.layBanCoNguoiChoi();
     if (!duLieuSaved) {
-        location.href = '../trang-dat-thuyen/index.html';
+        location.href = 'deployment.html';
         return;
     }
 
@@ -24,7 +24,7 @@ window.onload = () => {
     // Khoi tao ban co ke dich ngau nhien
     banCoKeDich = new BanCo();
     taoBanCoKeDich();
-    
+
     veBanCo();
     dangKySuKien();
     capNhatThongKe();
@@ -76,13 +76,13 @@ function ghiNhatKy(toaDo, trangThai, kieu) {
     const logEl = document.getElementById('combat-log');
     const dongMoi = document.createElement('div');
     dongMoi.className = `log-entry ${kieu}`;
-    
+
     const id = soLuotBan.toString().padStart(2, '0');
     dongMoi.innerHTML = `<span class="id">${id}:</span> <span class="status">${trangThai}</span>`;
-    
+
     const hienTai = logEl.querySelector('.log-entry.active');
     if (hienTai) hienTai.remove();
-    
+
     logEl.appendChild(dongMoi);
     logEl.scrollLeft = logEl.scrollWidth;
 }
@@ -106,7 +106,7 @@ function capNhatSucManh() {
     const tongOThuyen = banCoNguoiChoi.danhSachThuyen.reduce((acc, s) => acc + s.doDai, 0);
     const soLanBiTrung = document.querySelectorAll('#player-grid .cell.hit').length;
     sucManhNguoiChoi = Math.round(((tongOThuyen - soLanBiTrung) / tongOThuyen) * 100);
-    
+
     document.getElementById('player-integrity-fill').style.width = sucManhNguoiChoi + '%';
     document.getElementById('player-integrity').innerText = sucManhNguoiChoi + '%';
 }
@@ -133,24 +133,24 @@ function kiemTraKetThuc() {
 // Xu ly khi game ket thuc (thang hoac thua)
 function ketThucGame(thang) {
     troChoiKetThuc = true;
-    
+
     const soThuyenDichChim = banCoKeDich.danhSachThuyen.filter(s => (s.soLanTrung || 0) >= s.doDai).length;
-    
+
     localStorage.setItem('btl_final_stats_vn', JSON.stringify({
-        win: thang, 
+        win: thang,
         shots: soLuotBan,
         accuracy: Math.round((soLanTrung / soLuotBan) * 100) || 0,
         sunk: soThuyenDichChim,
         duration: Math.round((Date.now() - thoiGianBatDau) / 1000)
     }));
-    setTimeout(() => location.href = '../trang-chien-thang/index.html', 1500);
+    setTimeout(() => location.href = 'victory.html', 1500);
 }
 
 // Dang ky cac su kien nut bam trong tran dau
 function dangKySuKien() {
     document.getElementById('fire-btn').onclick = khaiHoa;
     document.getElementById('restart-btn').onclick = () => {
-        if (confirm("HUY BO NHIEM VU?")) location.href = '../trang-chu/index.html';
+        if (confirm("HUY BO NHIEM VU?")) location.href = 'home.html';
     };
 }
 
