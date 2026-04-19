@@ -100,13 +100,13 @@ function veBanCo() {
 }
 
 // Ghi thong tin vao nhat ky chien dau
-function ghiNhatKy(toaDo, trangThai, kieu) {
+function ghiNhatKy(nguoiGhi, trangThai, kieu) {
     const logEl = document.getElementById('combat-log');
     const dongMoi = document.createElement('div');
     dongMoi.className = `log-entry ${kieu}`;
 
     const id = soLuotBan.toString().padStart(2, '0');
-    dongMoi.innerHTML = `<span class="id">${id}:</span> <span class="status">${trangThai}</span>`;
+    dongMoi.innerHTML = `<span class="id">${id}:</span> <span class="actor">[${nguoiGhi}]</span> <span class="status">${trangThai}</span>`;
 
     const hienTai = logEl.querySelector('.log-entry.active');
     if (hienTai) hienTai.remove();
@@ -125,7 +125,7 @@ function capNhatNhatKyHienTai(vanBan) {
         logEl.appendChild(hienTai);
     }
     const id = (soLuotBan + 1).toString().padStart(2, '0');
-    hienTai.innerHTML = `<span class="id">${id}:</span> DANG THEO DOI...`;
+    hienTai.innerHTML = `<span class="id">${id}:</span> <span class="actor">[HỆ THỐNG]</span> <span class="status">${vanBan}</span>`;
     logEl.scrollLeft = logEl.scrollWidth;
 }
 

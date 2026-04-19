@@ -68,11 +68,12 @@ function luotKeDich() {
     if (ketQuaBan.kieu === 'trung') {
         oGiaoDien.classList.add('hit');
         rungManHinh('heavy');
-        ghiNhatKy('ĐỊCH BẮN', `TRÚNG TẠI ${toaDoDocDuoc}`, 'hit');
+        ghiNhatKy('KẺ ĐỊCH', `BẮN TRÚNG TẠI ${toaDoDocDuoc}`, 'hit');
         capNhatSucManh();
 
         if (ketQuaBan.daChim) {
             AudioSys.playSunk();
+            ghiNhatKy('HỆ THỐNG', `THUYỀN CỦA BẠN ĐÃ CHÌM`, 'sunk');
             const huongVachKe = ketQuaBan.laChieuDoc ? 'sunk-v' : 'sunk-h';
             ketQuaBan.toaDo.forEach(viTri => {
                 const viTriManHinh = viTri.r * 10 + viTri.c;
@@ -87,7 +88,7 @@ function luotKeDich() {
     } else {
         AudioSys.playMiss();
         oGiaoDien.classList.add('miss');
-        ghiNhatKy('ĐỊCH BẮN', `BẮN TRƯỢT TẠI ${toaDoDocDuoc}`, 'miss');
+        ghiNhatKy('KẺ ĐỊCH', `BẮN TRƯỢT TẠI ${toaDoDocDuoc}`, 'miss');
         luotNguoiChoi = true;
     }
 }

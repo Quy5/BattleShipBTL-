@@ -39,11 +39,11 @@ function khaiHoa() {
         cell.classList.add('hit', 'ship', cfg ? cfg.color : 'blue');
         rungManHinh('light');
         soLanTrung++;
-        ghiNhatKy(toaDoVanBan, 'TRUNG MUC TIEU', 'hit');
+        ghiNhatKy('NGƯỜI CHƠI', `BẮN TRÚNG TẠI ${toaDoVanBan}`, 'hit');
         
         if (ketQua.daChim) {
             AudioSys.playSunk();
-            ghiNhatKy('SYSTEM', `THUYEN DICH ${ketQua.tenThuyen} DA CHIM`, 'sunk');
+            ghiNhatKy('HỆ THỐNG', `THUYỀN ĐỊCH ${ketQua.tenThuyen} ĐÃ CHÌM`, 'sunk');
             const lopChieu = ketQua.laChieuDoc ? 'sunk-v' : 'sunk-h';
             ketQua.toaDo.forEach(pos => {
                 const cellChim = document.getElementById(`e-cell-${pos.r}-${pos.c}`);
@@ -57,7 +57,7 @@ function khaiHoa() {
         AudioSys.playMiss();
         cell.classList.add('miss');
         soLanTruot++;
-        ghiNhatKy(toaDoVanBan, 'BAN TRUOT', 'miss');
+        ghiNhatKy('NGƯỜI CHƠI', `BẮN TRƯỢT TẠI ${toaDoVanBan}`, 'miss');
         luotNguoiChoi = false;
         setTimeout(luotKeDich, 800);
     }

@@ -832,6 +832,17 @@ body {
     color: #fff;
 }
 
+.log-entry span.actor {
+    color: var(--cyan-neon);
+    font-weight: bold;
+    margin-right: 5px;
+    letter-spacing: 0.5px;
+}
+
+.log-entry.hit span.actor {
+    color: var(--gold-caution);
+}
+
 .log-entry.hit span.status {
     color: var(--red-alert);
     font-weight: bold;
