@@ -44,6 +44,12 @@ function veBanCo() {
             cell.dataset.row = r;
             cell.dataset.col = c;
             cell.onclick = () => xuLyClickO(r, c);
+            cell.oncontextmenu = (e) => {
+                e.preventDefault();
+                dangChieuDoc = !dangChieuDoc;
+                document.getElementById('orientation-mode').innerText = dangChieuDoc ? 'CHIEU DOC' : 'CHIEU NANG';
+                xuLyHoverO(r, c, true);
+            };
             cell.onmouseover = () => xuLyHoverO(r, c, true);
             cell.onmouseout = () => xuLyHoverO(r, c, false);
             grid.appendChild(cell);
@@ -61,8 +67,30 @@ function timThuyenTiepTheo() {
     return CAU_HINH_THUYEN.length; // Da dat het
 }
 
-// Xu ly khi nguoi dung bam vao mot o de dat thuyen
+// Xu ly khi nguoi dung bam vao mot o de dat thuyen hoac chon thuyen da dat de di chuyen
 function xuLyClickO(r, c) {
+    const nguoiO = banCo.mangLuoi[r][c];
+
+    // Neu click vao mot thuyen da dat, nhac no len de di chuyen
+    if (nguoiO && typeof nguoiO === 'object') {
+        const tenThuyen = nguoiO.tenThuyen;
+        const hdCu = banCo.xoaThuyen(tenThuyen);
+        
+        danhSachThuyenDaDat = danhSachThuyenDaDat.filter(s => s.ten !== tenThuyen);
+        thuyenHienTaiIdx = CAU_HINH_THUYEN.findIndex(s => s.ten === tenThuyen);
+        
+        if (hdCu !== null) {
+            dangChieuDoc = hdCu;
+            const orientationEl = document.getElementById('orientation-mode');
+            if (orientationEl) orientationEl.innerText = dangChieuDoc ? 'CHIEU DOC' : 'CHIEU NANG';
+        }
+        
+        capNhatGiaoDien();
+        // Hien thi hover ngay lap tuc sau khi nhac thuyen
+        xuLyHoverO(r, c, true);
+        return;
+    }
+
     if (thuyenHienTaiIdx >= CAU_HINH_THUYEN.length) return;
 
     const cauHinh = CAU_HINH_THUYEN[thuyenHienTaiIdx];

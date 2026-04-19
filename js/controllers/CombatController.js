@@ -27,6 +27,7 @@ window.onload = () => {
 
     veBanCo();
     dangKySuKien();
+    hienThiToaDo();
     capNhatThongKe();
     capNhatSucManh();
 
@@ -41,6 +42,33 @@ window.onload = () => {
     // Thu bat dau BGM
     AudioSys.startBGM();
 };
+
+// Hien thi toa do A-J va 1-10 cho hai ban co
+function hienThiToaDo() {
+    const arrBoxes = [
+        { top: 'p-labels-top', left: 'p-labels-left' },
+        { top: 'e-labels-top', left: 'e-labels-left' }
+    ];
+
+    arrBoxes.forEach(box => {
+        const topEl = document.getElementById(box.top);
+        const leftEl = document.getElementById(box.left);
+        if(!topEl || !leftEl) return;
+
+        for (let i = 1; i <= 10; i++) {
+            const l = document.createElement('div');
+            l.className = 'grid-label';
+            l.innerText = i;
+            topEl.appendChild(l);
+        }
+        ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'].forEach(lText => {
+            const l = document.createElement('div');
+            l.className = 'grid-label-v';
+            l.innerText = lText;
+            leftEl.appendChild(l);
+        });
+    });
+}
 
 // Ve luoi ban co cho ca nguoi choi va ke dich
 function veBanCo() {

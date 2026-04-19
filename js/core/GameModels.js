@@ -29,17 +29,8 @@ class BanCo {
             const c = laChieuDoc ? cot : cot + i;
 
             if (r < 0 || r >= this.kichThuoc || c < 0 || c >= this.kichThuoc) return false;
+            // Chỉ kiểm tra ô hiện tại có bị đè lên thuyền khác không
             if (this.mangLuoi[r][c] !== null) return false;
-
-            for (let dr = -1; dr <= 1; dr++) {
-                for (let dc = -1; dc <= 1; dc++) {
-                    const nr = r + dr;
-                    const nc = c + dc;
-                    if (nr >= 0 && nr < this.kichThuoc && nc >= 0 && nc < this.kichThuoc) {
-                        if (this.mangLuoi[nr][nc] !== null) return false;
-                    }
-                }
-            }
         }
         return true;
     }
@@ -61,6 +52,19 @@ class BanCo {
             laChieuDoc
         });
         return true;
+    }
+
+    xoaThuyen(tenThuyen) {
+        const index = this.danhSachThuyen.findIndex(s => s.ten === tenThuyen);
+        if (index !== -1) {
+            const thuyen = this.danhSachThuyen[index];
+            thuyen.toaDo.forEach(td => {
+                this.mangLuoi[td.r][td.c] = null;
+            });
+            this.danhSachThuyen.splice(index, 1);
+            return thuyen.laChieuDoc;
+        }
+        return null;
     }
 
     nhanTanCong(hang, cot) {

@@ -31,9 +31,7 @@ function getHardMove() {
         let state = banCoNguoiChoi.mangLuoi[r][c];
         if (state === 'truot') return true;
         for (let sCell of sunkCells) {
-            let dr = Math.abs(sCell.r - r);
-            let dc = Math.abs(sCell.c - c);
-            if (dr <= 1 && dc <= 1) return true;
+            if (sCell.r === r && sCell.c === c) return true;
         }
         return false;
     };
@@ -112,7 +110,7 @@ function getHardMove() {
     }
 
     if (maxR === -1 || maxProb === 0) {
-        return getEasyMove(); // use fallback if probabilities fail to resolve
+        return getEasyMove();
     }
 
     return { r: maxR, c: maxC };

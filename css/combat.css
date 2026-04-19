@@ -743,7 +743,10 @@ body {
 }
 
 .labels-top {
-    display: none;
+    display: grid;
+    grid-template-columns: repeat(10, 38px);
+    margin-left: 30px;
+    height: 30px;
 }
 
 .grid-label {
@@ -764,10 +767,17 @@ body {
     font-weight: bold;
     opacity: 0.7;
     font-family: var(--font-data);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
 }
 
 .labels-left {
-    display: none;
+    display: grid;
+    grid-template-rows: repeat(10, 38px);
+    width: 30px;
+    margin-top: 2px;
 }
 
 .combat-footer {
