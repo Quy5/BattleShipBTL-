@@ -24,10 +24,15 @@
 
         <section class="rank-promotion">
             <div class="rank-badge">
-                <div class="badge-icon">🏅</div>
+                <div class="badge-icon" id="rank-icon">🏅</div>
                 <div class="rank-info">
-                    <span class="label">RANK PROMOTED</span>
+                    <span class="label" id="rank-label">RANK PROMOTED</span>
                     <h2 id="rank-name">FLEET ADMIRAL</h2>
+                </div>
+                <!-- Vị trí hiển thị thời gian hoàn thành game đấu bên cạnh Rank -->
+                <div class="time-info" style="margin-left: 20px; padding-left: 20px; border-left: 1px solid var(--glass-border);">
+                    <span class="label" style="font-size: 0.6rem; color: var(--text-muted); letter-spacing: 2px;">COMPLETION TIME</span>
+                    <h2 id="rank-time" style="font-size: 1.5rem; color: var(--primary-blue);">00:00</h2>
                 </div>
             </div>
         </section>

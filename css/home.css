@@ -161,3 +161,123 @@
 .settings-btn:hover {
     color: white;
 }
+
+/* Rank History Modal Styles */
+.history-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.history-modal-content {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    width: 600px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 30px rgba(0, 115, 255, 0.2);
+}
+
+.history-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.history-modal-header h2 {
+    color: var(--accent-orange);
+    letter-spacing: 5px;
+    font-size: 1.5rem;
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: var(--danger-red);
+}
+
+.history-list {
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px 20px;
+    border-radius: 4px;
+}
+
+.history-item.win {
+    border-left: 4px solid var(--success-green);
+}
+
+.history-item.loss {
+    border-left: 4px solid var(--danger-red);
+}
+
+.h-rank {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+}
+
+.h-icon {
+    font-size: 2rem;
+}
+
+.h-title {
+    font-weight: bold;
+    color: var(--text-main);
+    font-size: 1.1rem;
+}
+
+.h-date {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-family: var(--font-data);
+}
+
+.h-stats {
+    display: flex;
+    gap: 20px;
+    font-family: var(--font-data);
+    color: var(--primary-blue);
+    font-size: 0.9rem;
+}
+
+.h-stat-label {
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 4px;
+}
+
+.h-stat-box {
+    text-align: right;
+}

@@ -165,6 +165,8 @@ function ketThucGame(thang) {
     const soThuyenDichChim = banCoKeDich.danhSachThuyen.filter(s => (s.soLanTrung || 0) >= s.doDai).length;
 
     localStorage.setItem('btl_final_stats_vn', JSON.stringify({
+        id: Date.now(),
+        date: new Date().toLocaleString('en-GB'),
         win: thang,
         shots: soLuotBan,
         accuracy: Math.round((soLanTrung / soLuotBan) * 100) || 0,

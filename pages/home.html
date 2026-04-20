@@ -70,13 +70,28 @@
 
         <footer class="bottom-bar">
             <div class="status-items">
-                <div class="status-item"><span class="icon">♞</span><span class="label">TACTICAL</span></div>
-                <div class="status-item"><span class="icon">🏅</span><span class="label">RANK</span></div>
+                <div class="status-item" style="cursor: pointer;" onclick="location.href='instructions.html'"><span
+                        class="icon">♞</span><span class="label">TACTICAL</span></div>
+                <div class="status-item" id="history-toggle" style="cursor: pointer;" onclick="showRankHistory()"><span
+                        class="icon">🏅</span><span class="label">HISTORY</span></div>
                 <div class="status-item" id="sound-toggle" style="cursor: pointer;"><span class="icon"
                         id="sound-icon">🔊</span><span class="label" id="sound-label">SOUND ON</span></div>
             </div>
             <div class="settings"><button class="settings-btn">⚙ SETTINGS</button></div>
         </footer>
+
+        <!-- Rank History Modal -->
+        <div id="history-modal" class="history-modal-overlay" style="display: none;">
+            <div class="history-modal-content">
+                <header class="history-modal-header">
+                    <h2>CAREER RECORD</h2>
+                    <button class="close-btn" onclick="hideRankHistory()">×</button>
+                </header>
+                <div class="history-list" id="history-list">
+                    <!-- History items will be injected here -->
+                </div>
+            </div>
+        </div>
     </main>
 
     <script src="../js/core/Storage.js"></script>
