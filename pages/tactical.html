@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STRATEGIC COMMAND | BATTLESHIP</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/tactical.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="crt-overlay"></div>
+
+    <button onclick="location.href='home.html'" class="tactical-btn back-btn">← BACK TO MENU</button>
+
+    <main class="tactical-container">
+        <header class="tactical-header">
+            <div class="header-main">
+                <span class="header-subtitle">TACTICAL DIRECTIVE</span>
+                <h1 class="header-title">STRATEGIC COMMAND</h1>
+            </div>
+            <div class="header-status">
+                <span class="status-label">STATUS</span>
+                <span class="status-value">CLASSIFIED</span>
+            </div>
+        </header>
+
+        <section class="tactical-grid row-1">
+            <div class="tactical-card hunt-mode">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" />
+                            <path d="M3 9h18M3 15h18M9 3v18M15 3v18" />
+                        </svg>
+                    </div>
+                    <div class="card-titles">
+                        <h3>HUNT MODE</h3>
+                        <span class="card-subtitle">Checkerboard Grid</span>
+                    </div>
+                    <div class="card-visual">
+                        <div class="checkerboard"></div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>Don't fire randomly. Aim for squares separated by one (like the black squares on a chessboard). This helps reduce the number of shots needed to locate any ship that is two or more spaces long.</p>
+                </div>
+            </div>
+
+            <div class="tactical-card target-mode">
+                <div class="card-header">
+                    <div class="card-icon danger">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 8v8M8 12h8" />
+                        </svg>
+                    </div>
+                    <div class="card-titles">
+                        <h3>TARGET MODE</h3>
+                        <span class="card-subtitle">After a "Touchdown" Hit</span>
+                    </div>
+                    <div class="card-visual">
+                        <div class="crosshair-ui"></div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>Immediately after a target is hit, switch to target mode: fire at the 4 adjacent squares (North, South, East, West) until the orientation is determined, then finish off the remaining points.</p>
+                </div>
+            </div>
+
+            <div class="tactical-card probability">
+                <div class="card-header">
+                    <div class="card-icon warning">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21.21 15.89A10 10 0 1 1 8 2.83" />
+                            <path d="M22 12A10 10 0 0 0 12 2v10z" />
+                        </svg>
+                    </div>
+                    <div class="card-titles">
+                        <h3>PROBABILITY</h3>
+                        <span class="card-subtitle">Area Analysis</span>
+                    </div>
+                    <div class="card-visual">
+                        <div class="bar-chart">
+                            <div class="bar" style="height: 40%"></div>
+                            <div class="bar" style="height: 70%"></div>
+                            <div class="bar" style="height: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>Focus attacks on open areas where the largest remaining enemy ships could still fit. Ignore small, isolated spaces in the early stages of the battle.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="tactical-grid row-2">
+            <div class="tactical-card optimal">
+                <div class="card-header">
+                    <div class="card-icon success">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg>
+                    </div>
+                    <div class="card-titles">
+                        <h3>OPTIMAL POSITIONING</h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>Don't place your ships too close together. Avoid predictable corners. Combine horizontal and vertical orientations. Break symmetry to make it harder for the opponent to predict.</p>
+                </div>
+            </div>
+
+            <div class="tactical-card logging">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                            <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+                        </svg>
+                    </div>
+                    <div class="card-titles">
+                        <h3>LOGGING</h3>
+                    </div>
+                    <div class="card-visual pen-icon">
+                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>Memory isn't always accurate. Use a system to mark every shot (white and red). Identify ships that have been sunk to deduce the scale of remaining threats (e.g., is the 3-square submarine still there?).</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="tactical-footer">
+            <span class="footer-left">TACTICAL HANDBOOK</span>
+            <span class="footer-right">OPTIMIZE WIN RATE > 85%</span>
+        </footer>
+    </main>
+
+    <script src="../js/core/Storage.js"></script>
+    <script src="../js/core/GameModels.js"></script>
+    <script src="../js/core/AudioManager.js"></script>
+</body>
+
+</html>

@@ -54,7 +54,8 @@ class AudioManager {
 const AudioSys = new AudioManager();
 
 document.addEventListener('DOMContentLoaded', () => {
-    if (window.location.pathname.includes('instructions.html')) return;
+    if (window.location.pathname.includes('instructions.html') || 
+        window.location.pathname.includes('tactical.html')) return;
 
     let soundBtn = document.getElementById('sound-toggle');
 
