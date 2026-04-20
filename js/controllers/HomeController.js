@@ -21,10 +21,10 @@ function showRankHistory() {
     const modal = document.getElementById('history-modal');
     const list = document.getElementById('history-list');
     modal.style.display = 'flex';
-    list.innerHTML = ''; // Clear old
+    list.innerHTML = '';
 
     const history = JSON.parse(localStorage.getItem('btl_match_history_vn')) || [];
-    
+
     if (history.length === 0) {
         list.innerHTML = '<p style="text-align: center; color: var(--text-muted); margin-top: 20px;">NO CAREER RECORD FOUND.</p>';
         return;
@@ -33,9 +33,9 @@ function showRankHistory() {
     history.forEach(item => {
         const hItem = document.createElement('div');
         hItem.className = `history-item ${item.win ? 'win' : 'loss'}`;
-        
+
         const timeStr = formatTime(item.duration);
-        
+
         hItem.innerHTML = `
             <div class="h-rank">
                 <div class="h-icon">${item.rankIcon || '🏅'}</div>

@@ -8,20 +8,16 @@ let mucTieuDaChon = null;
 let luotNguoiChoi = true;
 let troChoiKetThuc = false;
 
-// Khoi chay khi vao trang chien dau
 window.onload = () => {
     const duLieuSaved = LuuTru.layBanCoNguoiChoi();
     if (!duLieuSaved) {
         location.href = 'deployment.html';
         return;
     }
-
-    // Khoi tao ban co nguoi choi tu du lieu da luu
     banCoNguoiChoi = new BanCo();
     banCoNguoiChoi.mangLuoi = duLieuSaved.mangLuoi;
     banCoNguoiChoi.danhSachThuyen = duLieuSaved.danhSachThuyen;
 
-    // Khoi tao ban co ke dich ngau nhien
     banCoKeDich = new BanCo();
     taoBanCoKeDich();
 
@@ -31,19 +27,15 @@ window.onload = () => {
     capNhatThongKe();
     capNhatSucManh();
 
-    // Bo dem thoi gian
     setInterval(() => {
         if (troChoiKetThuc) return;
         const thoiGianTroiQua = Math.floor((Date.now() - thoiGianBatDau) / 1000);
         const timerEl = document.getElementById('turn-timer');
         if (timerEl) timerEl.innerText = (thoiGianTroiQua % 60).toString().padStart(2, '0');
     }, 1000);
-
-    // Thu bat dau BGM
     AudioSys.startBGM();
 };
 
-// Hien thi toa do A-J va 1-10 cho hai ban co
 function hienThiToaDo() {
     const arrBoxes = [
         { top: 'p-labels-top', left: 'p-labels-left' },
@@ -53,7 +45,7 @@ function hienThiToaDo() {
     arrBoxes.forEach(box => {
         const topEl = document.getElementById(box.top);
         const leftEl = document.getElementById(box.left);
-        if(!topEl || !leftEl) return;
+        if (!topEl || !leftEl) return;
 
         for (let i = 1; i <= 10; i++) {
             const l = document.createElement('div');
@@ -69,8 +61,6 @@ function hienThiToaDo() {
         });
     });
 }
-
-// Ve luoi ban co cho ca nguoi choi va ke dich
 function veBanCo() {
     const pGrid = document.getElementById('player-grid');
     const eGrid = document.getElementById('enemy-grid');
@@ -78,7 +68,6 @@ function veBanCo() {
 
     for (let r = 0; r < 10; r++) {
         for (let c = 0; c < 10; c++) {
-            // Ban co nguoi choi (hien thi thuyen cua minh)
             const pCell = document.createElement('div');
             pCell.className = 'cell';
             const oNguoiChoi = banCoNguoiChoi.mangLuoi[r][c];
@@ -89,7 +78,6 @@ function veBanCo() {
             }
             pGrid.appendChild(pCell);
 
-            // Ban co ke dich (che giau thuyen)
             const eCell = document.createElement('div');
             eCell.className = 'cell';
             eCell.id = `e-cell-${r}-${c}`;
@@ -98,8 +86,6 @@ function veBanCo() {
         }
     }
 }
-
-// Ghi thong tin vao nhat ky chien dau
 function ghiNhatKy(nguoiGhi, trangThai, kieu) {
     const logEl = document.getElementById('combat-log');
     const dongMoi = document.createElement('div');
@@ -115,7 +101,6 @@ function ghiNhatKy(nguoiGhi, trangThai, kieu) {
     logEl.scrollLeft = logEl.scrollWidth;
 }
 
-// Cap nhat trang thai dang theo doi trong nhat ky
 function capNhatNhatKyHienTai(vanBan) {
     const logEl = document.getElementById('combat-log');
     let hienTai = logEl.querySelector('.log-entry.active');
@@ -129,7 +114,6 @@ function capNhatNhatKyHienTai(vanBan) {
     logEl.scrollLeft = logEl.scrollWidth;
 }
 
-// Cap nhat thanh mau (suc manh) cua nguoi choi
 function capNhatSucManh() {
     const tongOThuyen = banCoNguoiChoi.danhSachThuyen.reduce((acc, s) => acc + s.doDai, 0);
     const soLanBiTrung = document.querySelectorAll('#player-grid .cell.hit').length;
@@ -138,16 +122,12 @@ function capNhatSucManh() {
     document.getElementById('player-integrity-fill').style.width = sucManhNguoiChoi + '%';
     document.getElementById('player-integrity').innerText = sucManhNguoiChoi + '%';
 }
-
-// Cap nhat thong ke do chinh xac
 function capNhatThongKe() {
     const tongSoPhatBan = soLanTrung + soLanTruot;
     const doChinhXac = tongSoPhatBan > 0 ? Math.round((soLanTrung / tongSoPhatBan) * 100) : 0;
     document.getElementById('acc-fill').style.width = doChinhXac + '%';
     document.getElementById('acc-value').innerText = doChinhXac + '%';
 }
-
-// Kiem tra xem game da ket thuc chua
 function kiemTraKetThuc() {
     const tongOThuyen = CAU_HINH_THUYEN.reduce((acc, s) => acc + s.doDai, 0);
     const diemNguoiChoi = document.querySelectorAll('#enemy-grid .cell.hit').length;
@@ -158,7 +138,6 @@ function kiemTraKetThuc() {
     return false;
 }
 
-// Xu ly khi game ket thuc (thang hoac thua)
 function ketThucGame(thang) {
     troChoiKetThuc = true;
 
@@ -176,19 +155,16 @@ function ketThucGame(thang) {
     setTimeout(() => location.href = 'victory.html', 1500);
 }
 
-// Dang ky cac su kien nut bam trong tran dau
 function dangKySuKien() {
     document.getElementById('fire-btn').onclick = khaiHoa;
     document.getElementById('restart-btn').onclick = () => {
         if (confirm("HUY BO NHIEM VU?")) location.href = 'home.html';
     };
 }
-
-// Hieu ung rung man hinh khi bi ban trung
 function rungManHinh(cuongDo = 'light') {
     const body = document.body;
     body.classList.remove('shake-light', 'shake-heavy');
-    void body.offsetWidth; // kich hoat reflow
+    void body.offsetWidth;
     body.classList.add(cuongDo === 'heavy' ? 'shake-heavy' : 'shake-light');
     setTimeout(() => {
         body.classList.remove('shake-light', 'shake-heavy');

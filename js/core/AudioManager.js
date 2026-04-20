@@ -1,4 +1,4 @@
-// Quan ly am thanh bang file mp3
+
 class AudioManager {
     constructor() {
         this.enabled = localStorage.getItem('btl_sound_vn') !== 'false';

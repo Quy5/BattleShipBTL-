@@ -1,4 +1,4 @@
-// Quan ly luu tru du lieu vao LocalStorage
+
 const LuuTru = {
     KHOA_LUU: {
         BAN_CO_NGUOI_CHOI: 'btl_player_board_vn',

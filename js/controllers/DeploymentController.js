@@ -4,7 +4,6 @@ let danhSachThuyenDaDat = [];
 let thuyenHienTaiIdx = 0;
 let dangChieuDoc = false;
 
-// Khoi chay khi trang duoc tai xong
 window.onload = () => {
     hienThiNhan();
     veBanCo();
@@ -12,8 +11,6 @@ window.onload = () => {
     capNhatGiaoDien();
     AudioSys.startBGM();
 };
-
-// Hien thi toa do A-J va 1-10
 function hienThiNhan() {
     const top = document.getElementById('labels-top');
     const left = document.getElementById('labels-left');
@@ -31,8 +28,6 @@ function hienThiNhan() {
         left.appendChild(l);
     });
 }
-
-// Ve luoi ban co de dat thuyen
 function veBanCo() {
     const grid = document.getElementById('deployment-grid');
     grid.innerHTML = '';
@@ -56,37 +51,31 @@ function veBanCo() {
         }
     }
 }
-
-// Tim thuyen tiep theo chua duoc dat
 function timThuyenTiepTheo() {
     for (let i = 0; i < CAU_HINH_THUYEN.length; i++) {
         if (!danhSachThuyenDaDat.some(s => s.ten === CAU_HINH_THUYEN[i].ten)) {
             return i;
         }
     }
-    return CAU_HINH_THUYEN.length; // Da dat het
+    return CAU_HINH_THUYEN.length;
 }
-
-// Xu ly khi nguoi dung bam vao mot o de dat thuyen hoac chon thuyen da dat de di chuyen
 function xuLyClickO(r, c) {
     const nguoiO = banCo.mangLuoi[r][c];
 
-    // Neu click vao mot thuyen da dat, nhac no len de di chuyen
     if (nguoiO && typeof nguoiO === 'object') {
         const tenThuyen = nguoiO.tenThuyen;
         const hdCu = banCo.xoaThuyen(tenThuyen);
-        
+
         danhSachThuyenDaDat = danhSachThuyenDaDat.filter(s => s.ten !== tenThuyen);
         thuyenHienTaiIdx = CAU_HINH_THUYEN.findIndex(s => s.ten === tenThuyen);
-        
+
         if (hdCu !== null) {
             dangChieuDoc = hdCu;
             const orientationEl = document.getElementById('orientation-mode');
             if (orientationEl) orientationEl.innerText = dangChieuDoc ? 'CHIEU DOC' : 'CHIEU NANG';
         }
-        
+
         capNhatGiaoDien();
-        // Hien thi hover ngay lap tuc sau khi nhac thuyen
         xuLyHoverO(r, c, true);
         return;
     }
@@ -103,9 +92,7 @@ function xuLyClickO(r, c) {
     }
 }
 
-// Hien thi xem truoc thuyen khi di chuot qua
 function xuLyHoverO(r, c, dangVao) {
-    // Xoa trang thai xem truoc cu
     document.querySelectorAll('.cell.preview, .cell.invalid').forEach(cl => {
         const laThuyenCoDinh = cl.classList.contains('ship');
         cl.classList.remove('preview', 'invalid');
@@ -136,7 +123,6 @@ function xuLyHoverO(r, c, dangVao) {
     }
 }
 
-// Cap nhat toan bo giao dien trang dat thuyen
 function capNhatGiaoDien() {
     lamMoiBanCo();
     hienThiDanhSachThuyen();
@@ -144,7 +130,6 @@ function capNhatGiaoDien() {
     document.getElementById('placed-count').innerText = danhSachThuyenDaDat.length;
 }
 
-// Hien thi danh sach thuyen o thanh ben
 function hienThiDanhSachThuyen() {
     const list = document.getElementById('ship-list');
     list.innerHTML = '';
@@ -173,7 +158,6 @@ function hienThiDanhSachThuyen() {
     });
 }
 
-// Ve lai thuyen da dat tren ban co
 function lamMoiBanCo() {
     document.querySelectorAll('.cell').forEach(cell => {
         const r = parseInt(cell.dataset.row);
@@ -187,7 +171,6 @@ function lamMoiBanCo() {
     });
 }
 
-// Dang ky cac su kien nut bam
 function dangKySuKien() {
     const nutNgauNhien = document.getElementById('shuffle-btn');
     if (nutNgauNhien) nutNgauNhien.onclick = tuDongDatThuyen;
@@ -215,7 +198,6 @@ function dangKySuKien() {
     };
 }
 
-// Tu dong sap xep thuyen ngau nhien
 function tuDongDatThuyen() {
     banCo = new BanCo();
     danhSachThuyenDaDat = [];

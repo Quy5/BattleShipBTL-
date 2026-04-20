@@ -1,4 +1,4 @@
-// --- AI STATE ---
+
 let aiMediumState = {
     mode: 'hunt',
     firstHit: null,
@@ -36,7 +36,7 @@ function getMediumMove() {
             }
         }
 
-        aiMediumState.mode = 'hunt'; // fallback if target mode gets completely stuck
+        aiMediumState.mode = 'hunt';
     }
 
     let validTargets = [];

@@ -1,20 +1,17 @@
 
-// Logic xu ly cua nguoi choi
-
 function xuLyChonMucTieu(r, c) {
     if (!luotNguoiChoi || troChoiKetThuc) return;
     if (banCoKeDich.mangLuoi[r][c] === 'trung' || banCoKeDich.mangLuoi[r][c] === 'truot') return;
 
-    // Xoa muc tieu cu da chon
     document.querySelectorAll('.cell.targeted').forEach(cell => cell.classList.remove('targeted'));
-    
+
     mucTieuDaChon = { r, c };
     const cell = document.getElementById(`e-cell-${r}-${c}`);
     cell.classList.add('targeted');
 
     const nutKhaiHoa = document.getElementById('fire-btn');
     if (nutKhaiHoa) nutKhaiHoa.disabled = false;
-    
+
     capNhatNhatKyHienTai(`DANG KHOA MUC TIEU...`);
 }
 
@@ -24,10 +21,10 @@ function khaiHoa() {
     const { r, c } = mucTieuDaChon;
     mucTieuDaChon = null;
     soLuotBan++;
-    
+
     const cell = document.getElementById(`e-cell-${r}-${c}`);
     cell.classList.remove('targeted');
-    
+
     const nutKhaiHoa = document.getElementById('fire-btn');
     if (nutKhaiHoa) nutKhaiHoa.disabled = true;
 
@@ -40,7 +37,7 @@ function khaiHoa() {
         rungManHinh('light');
         soLanTrung++;
         ghiNhatKy('NGƯỜI CHƠI', `BẮN TRÚNG TẠI ${toaDoVanBan}`, 'hit');
-        
+
         if (ketQua.daChim) {
             AudioSys.playSunk();
             ghiNhatKy('HỆ THỐNG', `THUYỀN ĐỊCH ${ketQua.tenThuyen} ĐÃ CHÌM`, 'sunk');
@@ -61,6 +58,6 @@ function khaiHoa() {
         luotNguoiChoi = false;
         setTimeout(luotKeDich, 800);
     }
-    
+
     capNhatThongKe();
 }
